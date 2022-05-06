@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Whack A Mole</title>
+		<style>
+			button {
+				font-size: 50px;
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="scoreDiv">
+			<h1 id="scoreIndicator">Score: 0</h1>
+		</div>
+		<div id="buttonDiv"></div>
+		<script>
+			const scoreIndicator = document.getElementById('scoreIndicator');
+			const buttonDiv = document.getElementById('buttonDiv');
+			let score = 0;
+
+			for (let i = 0; i < 10; i++) {
+				const button = document.createElement('button');
+				button.setAttribute('data-type', i);
+				button.textContent = i;
+				buttonDiv.appendChild(button);
+
+				button.addEventListener('click', () => {
+					if (button.style.backgroundColor === 'green') {
+						score++;
+						button.style.backgroundColor = '';
+						scoreIndicator.textContent = 'Score: ' + String(score);
+					}
+				});
+			}
+
+			const addMole = () => {
+				const mole = Math.floor(Math.random() * 10);
+				const buttonEl = document.querySelector(`[data-type="${mole}"]`);
+				buttonEl.style.backgroundColor = 'green';
+			};
+
+			const removeMole = () => {
+				this.style.backgroundColor = null;
+				score += 1;
+				scoreIndicator.innerText = `Score: ${score}`;
+			};
+
+			setInterval(() => {
+				addMole();
+				setTimeout(removeMole, 1000);
+			}, 3000);
+		</script>
+	</body>
+</html>
