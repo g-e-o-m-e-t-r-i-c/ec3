@@ -6,7 +6,7 @@ const jsdom = require('jsdom');
 	const doc = new jsdom.JSDOM(text);
 
 	const spans = doc.window.document.querySelectorAll('[title="Algorithm"]');
-	for (let s of spans) {
-		console.log(s.nextElementSibling.nextElementSibling.innerHTML);
-	}
+	spans.forEach((s) => {
+		console.log(s.nextElementSibling.nextElementSibling.textContent);
+	});
 })();
