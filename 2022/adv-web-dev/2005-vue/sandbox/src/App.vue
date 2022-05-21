@@ -20,6 +20,10 @@ export default {
 		JsonTodo,
 	},
 
+	data: () => ({
+		todos: [],
+	}),
+
 	created() {
 		const getData = async (x) => {
 			const res = await fetch(
@@ -29,7 +33,7 @@ export default {
 			return json;
 		};
 		const promises = [];
-		for (let i = 1; i <= 15; i++) {
+		for (let i = 1; i <= 200; i++) {
 			promises.push(getData(i));
 		}
 		Promise.all(promises).then((res) => {
